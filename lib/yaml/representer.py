@@ -5,6 +5,7 @@ __all__ = ['BaseRepresenter', 'SafeRepresenter', 'Representer',
 from error import *
 from nodes import *
 
+import collections
 import datetime
 
 import sys, copy_reg, types
@@ -278,6 +279,9 @@ SafeRepresenter.add_representer(tuple,
 SafeRepresenter.add_representer(dict,
         SafeRepresenter.represent_dict)
 
+SafeRepresenter.add_representer(collections.defaultdict,
+        SafeRepresenter.represent_dict)
+
 SafeRepresenter.add_representer(set,
         SafeRepresenter.represent_set)
 
@@ -483,4 +487,3 @@ Representer.add_multi_representer(types.InstanceType,
 
 Representer.add_multi_representer(object,
         Representer.represent_object)
-

@@ -5,7 +5,7 @@ __all__ = ['BaseRepresenter', 'SafeRepresenter', 'Representer',
 from .error import *
 from .nodes import *
 
-import datetime, sys, copyreg, types, base64, collections
+import collections, datetime, sys, copyreg, types, base64, collections
 
 class RepresenterError(YAMLError):
     pass
@@ -255,6 +255,9 @@ SafeRepresenter.add_representer(tuple,
 SafeRepresenter.add_representer(dict,
         SafeRepresenter.represent_dict)
 
+SafeRepresenter.add_representer(collections.defaultdict,
+        SafeRepresenter.represent_dict)
+
 SafeRepresenter.add_representer(set,
         SafeRepresenter.represent_set)
 
@@ -384,4 +387,3 @@ Representer.add_representer(types.ModuleType,
 
 Representer.add_multi_representer(object,
         Representer.represent_object)
-
